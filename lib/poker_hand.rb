@@ -34,6 +34,8 @@ def poker_hand(hand)
   three_of_a_kind_counter = 0
   four_of_a_kind_counter = 0
 
+  consecutive = value.sort.each_cons(2).all? { |x,y| y == x + 1 }
+
   2.times do |i|
     four_of_a_kind = value[i..(i + 3)].all? {|x| x == value[i]}
     if four_of_a_kind
@@ -57,8 +59,10 @@ def poker_hand(hand)
 
   if four_of_a_kind_counter > 0
     "four of a kind"
+  elsif consecutive
+    "straight"
   elsif three_of_a_kind_counter > 0
-    puts "three of a kind"
+    "three of a kind"
   elsif two_of_a_kind_counter >= 2
     "one pair"
   else
