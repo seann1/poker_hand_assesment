@@ -35,6 +35,7 @@ def poker_hand(hand)
   four_of_a_kind_counter = 0
 
   consecutive = value.sort.each_cons(2).all? { |x,y| y == x + 1 }
+  same_suit = suit.all? {|x| x == suit[0]}
 
   2.times do |i|
     four_of_a_kind = value[i..(i + 3)].all? {|x| x == value[i]}
@@ -57,7 +58,10 @@ def poker_hand(hand)
     end
   end
 
-  if four_of_a_kind_counter > 0
+
+  if same_suit
+    "flush"
+  elsif four_of_a_kind_counter > 0
     "four of a kind"
   elsif consecutive
     "straight"
@@ -71,7 +75,7 @@ def poker_hand(hand)
   end
 end
 
-poker_hand(["9h", "9d", "9s", "9c", "6s"])
+poker_hand(["9d", "9d", "9d", "9d", "6d"])
 
 
 

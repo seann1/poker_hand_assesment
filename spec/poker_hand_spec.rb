@@ -19,7 +19,11 @@ describe('poker_hand') do
     poker_hand(["9h", "9d", "9s", "9c", "6s"]).should(eq("four of a kind"))
   end
 
-  it("returns 'consecutive' if values in hand ascend in consecutive order") do
+  it("returns 'straight' if values in hand ascend in consecutive order") do
     poker_hand(["3h", "4d", "5s", "6c", "7s"]).should(eq("straight"))
+  end
+
+  it("returns 'flush' if values in hand are all of the same suit") do
+    poker_hand(["3d", "4d", "5d", "6d", "7d"]).should(eq("flush"))
   end
 end
