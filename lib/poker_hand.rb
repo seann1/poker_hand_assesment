@@ -59,38 +59,41 @@ def poker_hand(hand)
   end
 
   3.times do |i|
-    three_of_a_kind = value[i..(i + 2)].all? {|x| x == value[i]}
+    three_of_a_kind = value[i..(i + 2)].all? {|x| x == value[i + 1] && x == value[i + 2] }
     if three_of_a_kind
       three_of_a_kind_counter += 1
     end
   end
 
   4.times do |i|
-    two_of_a_kind = value[i..(i + 1)].all? {|x| x == value[i]}
+    two_of_a_kind = value[i..(i + 1)].all? {|x| x == value[i + 1]}
     if two_of_a_kind
       two_of_a_kind_counter += 1
     end
   end
 
-  if fullhouse == true
+  if consecutive && same_suit
+    "straight flush"
+  elsif four_of_a_kind_counter > 0
+    "four of a kind"
+  elsif fullhouse == true
     "full house"
   elsif same_suit
     "flush"
-  elsif four_of_a_kind_counter > 0
-    "four of a kind"
   elsif consecutive
     "straight"
   elsif three_of_a_kind_counter > 0
     "three of a kind"
-  elsif two_of_a_kind_counter >= 2
+  elsif two_of_a_kind_counter == 2
+    "two pair"
+  elsif two_of_a_kind_counter == 1
     "one pair"
   else
-    puts "you have a bad hand!"
     "you have a bad hand!"
   end
 end
 
-poker_hand(["9d", "9d", "9d", "9d", "6d"])
+poker_hand(["2d", "3d", "4d", "5d", "6d"])
 
 
 

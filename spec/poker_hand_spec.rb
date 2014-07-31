@@ -8,7 +8,7 @@ describe('poker_hand') do
   end
 
   it("returns 'one pair' if two cards in the hand have the same value") do
-    poker_hand(["8h", "8h", "10s", "11h", "6d"]).should(eq("one pair"))
+    poker_hand(["8h", "8h", "10s", "4h", "6d"]).should(eq("one pair"))
   end
 
   it("returns 'three of a kind' if three cards in a hand have the same value") do
@@ -24,10 +24,14 @@ describe('poker_hand') do
   end
 
   it("returns 'flush' if values in hand are all of the same suit") do
-    poker_hand(["3d", "4d", "5d", "6d", "7d"]).should(eq("flush"))
+    poker_hand(["3d", "4d", "10d", "6d", "7d"]).should(eq("flush"))
   end
 
   it("returns 'full house' if three of a kind and pair in hand") do
     poker_hand(["3d", "3d", "3d", "4d", "4d"]).should(eq("full house"))
+  end
+
+  it("returns 'straight flush' if cards ascend in consecutive order and are all of the same suit") do
+    poker_hand(["2d", "3d", "4d", "5d", "6d"]).should(eq("straight flush"))
   end
 end
