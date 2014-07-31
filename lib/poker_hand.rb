@@ -30,13 +30,24 @@ def poker_hand(hand)
   value = value.sort
   puts value
 
+  two_of_a_kind_counter = 0
 
+  4.times do |i|
+    two_of_a_kind = value[i..(i + 1)].all? {|x| x == value[i]}
+    if two_of_a_kind
+      two_of_a_kind_counter += 1
+    end
+  end
+
+  if two_of_a_kind_counter >= 1
+    "one pair"
+  else
     puts "you have a bad hand!"
     "you have a bad hand!"
-
+  end
 end
 
-poker_hand(["9h", "7d", "8s", "4c", "6s"])
+poker_hand(["9h", "9d", "8s", "4c", "6s"])
 
 
 
