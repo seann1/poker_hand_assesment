@@ -31,6 +31,14 @@ def poker_hand(hand)
   puts value
 
   two_of_a_kind_counter = 0
+  three_of_a_kind_counter = 0
+
+  3.times do |i|
+    three_of_a_kind = value[i..(i + 2)].all? {|x| x == value[i]}
+    if three_of_a_kind
+      three_of_a_kind_counter += 1
+    end
+  end
 
   4.times do |i|
     two_of_a_kind = value[i..(i + 1)].all? {|x| x == value[i]}
@@ -39,7 +47,9 @@ def poker_hand(hand)
     end
   end
 
-  if two_of_a_kind_counter >= 1
+  if three_of_a_kind_counter > 0
+    puts "three of a kind"
+  elsif two_of_a_kind_counter >= 2
     "one pair"
   else
     puts "you have a bad hand!"
@@ -47,7 +57,7 @@ def poker_hand(hand)
   end
 end
 
-poker_hand(["9h", "9d", "8s", "4c", "6s"])
+poker_hand(["9h", "9d", "9s", "4c", "6s"])
 
 
 

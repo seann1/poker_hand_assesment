@@ -10,4 +10,8 @@ describe('poker_hand') do
   it("returns 'one pair' if two cards in the hand have the same value") do
     poker_hand(["8h", "8h", "10s", "11h", "6d"]).should(eq("one pair"))
   end
+
+  it("returns 'three of a kind' if three cards in a hand have the same value") do
+    poker_hand(["9h", "9d", "9s", "4c", "6s"])
+end
 end
