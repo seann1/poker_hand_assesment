@@ -13,5 +13,8 @@ describe('poker_hand') do
 
   it("returns 'three of a kind' if three cards in a hand have the same value") do
     poker_hand(["9h", "9d", "9s", "4c", "6s"])
-end
+  end
+  it("returns 'four of a kind' if four cards in a hand have the same value") do
+    poker_hand(["9h", "9d", "9s", "9c", "6s"])
+  end
 end
