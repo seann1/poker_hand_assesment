@@ -26,4 +26,8 @@ describe('poker_hand') do
   it("returns 'flush' if values in hand are all of the same suit") do
     poker_hand(["3d", "4d", "5d", "6d", "7d"]).should(eq("flush"))
   end
+
+  it("returns 'full house' if three of a kind and pair in hand") do
+    poker_hand(["3d", "3d", "3d", "4d", "4d"]).should(eq("full house"))
+  end
 end

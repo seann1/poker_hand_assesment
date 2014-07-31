@@ -34,8 +34,22 @@ def poker_hand(hand)
   three_of_a_kind_counter = 0
   four_of_a_kind_counter = 0
 
+  full_house_begin = value[0..2].all? {|x| x == value[0]}
+  full_house_two_begin = value[0..1].all? {|x| x == value[0]}
+  full_house_two_end = value[3..4].all? {|x| x == value[3]}
+  full_house_end = value[2..4].all? {|x| x == value[2]}
   consecutive = value.sort.each_cons(2).all? { |x,y| y == x + 1 }
   same_suit = suit.all? {|x| x == suit[0]}
+
+  if full_house_begin && full_house_two_end
+    fullhouse = true
+    value.delete(0..4)
+  elsif full_house_two_begin && full_house_end
+    fullhouse = true
+    value.delete(0..4)
+  else
+    fullhouse = false
+  end
 
   2.times do |i|
     four_of_a_kind = value[i..(i + 3)].all? {|x| x == value[i]}
@@ -58,8 +72,9 @@ def poker_hand(hand)
     end
   end
 
-
-  if same_suit
+  if fullhouse == true
+    "full house"
+  elsif same_suit
     "flush"
   elsif four_of_a_kind_counter > 0
     "four of a kind"
